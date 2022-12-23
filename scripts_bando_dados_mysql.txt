@@ -1,0 +1,66 @@
+create database OneForAll;
+use OneForAll;
+
+create table login_tb 
+( id_login BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+nome varchar(100) not null,
+email varchar(100) not null,
+login varchar(100) not null,
+senha varchar(100) not null,
+id_loja int,
+id_cargo int);
+
+insert into login_tb 
+(nome,email,login,senha,id_loja,id_cargo)
+values
+("rogerio","rogerio_204@yahoo.com.br","rhmelo","123456", 1, 2)
+
+select * from login_tb
+
+CREATE TABLE cargo_tb
+(
+id_cargo BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+descricao VARCHAR(50) NOT NULL,
+nivel VARCHAR(50) NOT NULL,
+status BOOL NOT NULL DEFAULT 1,
+dt_inclusao DATETIME,
+dt_alteracao DATETIME,
+usuario VARCHAR(30)
+);
+select * from cargo_tb;
+insert into cargo_tb
+(descricao, nivel, dt_inclusao, usuario)
+values
+('faxineiro', 'senior', now(), 'rhmelo');
+
+set  @last_id = (SELECT LAST_INSERT_ID());
+select @last_id;
+
+CREATE TABLE endereco_tb
+(
+id_endereco BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+CEP NUMERIC(8) NOT NULL,
+logradouro VARCHAR(100) NOT NULL,
+bairro VARCHAR(100) NOT NULL,
+cidade VARCHAR(50) NOT NULL,
+UF VARCHAR(10) NOT NULL,
+dt_inclusao DATETIME,
+dt_alteracao DATETIME,
+usuario VARCHAR(30)
+);
+
+CREATE TABLE funcionario_tb 
+(
+id_funcionario BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+nome_funcionario VARCHAR(50) NOT NULL,
+email VARCHAR(50) NOT NULL,
+dt_admissao DATETIME NOT NULL,
+CPF NUMERIC(11) NOT NULL,
+id_endereco BIGINT,
+id_cargo BIGINT,
+ativo BOOL NOT NULL DEFAULT 1,
+dt_inclusao DATETIME,
+dt_alteracao DATETIME,
+usuario VARCHAR(30)
+);
+ALTER TABLE funcionario_tb ADD CONSTRAINT fk_endereco FOREIGN KEY ( id_endereco ) REFERENCES endereco_tb ( id_endereco ) ;

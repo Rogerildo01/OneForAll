@@ -1,0 +1,249 @@
+@import url(css/style.css);
+body {
+    margin: 0px !important;
+    padding: 0px !important;
+    width: 100%;
+    height: 100%;
+}
+
+#home,
+#upload,
+#acompServico,
+#configGerais,
+#acompProposta,
+#configRegras,
+#configSinistros {
+    width: 85%;
+    margin: 0 auto;
+    display: flexbox;
+    justify-content: flex-end;
+}
+
+.menu {
+    position: fixed;
+}
+
+.vertical-menu {
+    width: 280px;
+    height: 100%;
+}
+
+.vertical-menu a {
+    color: #0000ff;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc;
+}
+
+section {
+    background-color: #bdbdbd;
+    /*background-color: #ffdf00;*/
+    width: 280px;
+    height: 850px;
+}
+
+.logo {
+    background-color: #0000ff;
+    width: 280px;
+    height: 210px;
+    text-align: center;
+    color: white;
+}
+
+img {
+    margin-left: 20PX;
+    margin-right: 20PX;
+    margin-top: 40px;
+}
+
+.titulo {
+    color: white;
+}
+
+.home,
+.upload,
+.acompServico,
+.acompProposta,
+.configRegras,
+.configSinistros,
+.configGerais,
+.table {
+    width: 100%;
+    height: 100%;
+    padding-left: 5%;
+    background-image: url("static/img/dashboard.jpg");
+}
+
+.container-flex {
+    display: grid;
+    grid-template-columns: 0.5fr 5fr;
+}
+
+.card {
+    /*border: #0000ff solid;*/
+    text-align: center;
+    border-radius: 50px;
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+    padding: 30px;
+    margin: 20px;
+    width: 400px;
+    transition: all 0.3s ease-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+#cardSErvico {
+    /*border: solid #0000ff;*/
+    border-radius: 15px;
+    margin-top: 15px;
+}
+
+#tituloServicos {
+    text-align: center;
+}
+
+#cardServico {
+    align-content: center;
+}
+
+#select {
+    width: auto;
+    margin: 2px, 2px, 3px, 3px;
+}
+
+.data {
+    margin: 0 auto;
+    display: flexbox;
+    justify-content: flex-end;
+}
+
+#btnOK {
+    margin-top: 2px;
+}
+
+
+/* html upload */
+
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0px solid transparent;
+    border-radius: 0px;
+}
+
+.card-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+
+.card .card-title {
+    position: relative;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
+* {
+    outline: none;
+}
+
+.table th,
+.table thead th {
+    font-weight: 500;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table th {
+    padding: 1rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.table th,
+.table thead th {
+    font-weight: 500;
+}
+
+th {
+    text-align: inherit;
+}
+
+.m-b-20 {
+    margin-bottom: 20px;
+}
+
+.customcheckbox {
+    display: block;
+    position: relative;
+    padding-left: 24px;
+    font-weight: 100;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.customcheckbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    top: -3px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #CDCDCD;
+    border-radius: 6px;
+}
+
+.customcheckbox input:checked~.checkmark {
+    background-color: #2196BB;
+}
+
+.customcheckbox .checkmark:after {
+    left: 8px;
+    top: 4px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

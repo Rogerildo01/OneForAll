@@ -1,0 +1,41 @@
+{% extends 'menu2.html' %} {% load static %} {% block content %}
+<div class="col-12" id="cadastroCargo">
+    <div class="row">
+        <div class="cadastro">
+            <h1>Cadastrar Cargo</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <form action="{% url 'cadastro' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="typedescricao">Descricao</label>
+                    <input type="text" id="typedescricao" class="form-control form-control-" name="Descricao" />
+
+                </div>
+                <div class="form-outline form-white mb-4">
+                    <label for="nivel">Nível:</label>
+                    <select name="nivel" id="nivel">
+                      <option value="Júnior">Júnior</option>
+                      <option value="Pleno">Pleno</option>
+                      <option value="Senior">Senior</option>                      
+                    </select>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="ativo">
+                    <label class="form-check-label" for="exampleCheck1">Ativo</label>
+                </div>
+
+                <button type="submit" class="btn btn-success add-new"><i class="fa fa-save"></i> Salvar </button>
+            </form>
+        </div>
+    </div>
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-{{message.tags}}" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %} {% endif %}
+</div>
+
+{% endblock %}

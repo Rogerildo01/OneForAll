@@ -1,0 +1,120 @@
+{% extends 'menu2.html' %} {% load static %} {% block content %}
+<div class="col-12" id="acompProposta">
+    <div class="row">
+        <div class="acompProposta">
+            <h1>Cargos</h1>
+
+        </div>
+    </div>
+    <div class="col py-3">
+        <table class="table table-hover table-light table-striped">
+            <thead class="thead">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Descricao</th>
+                    <th scope="col">Nível</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Dt. Inclusão</th>
+                    <th scope="col">Dt. Alteração</th>
+                    <th scope="col">Usuário</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for l in paginacao %}
+                <tr>
+                    <th id="id_cargo" name="id_cargo" scope="row">{{l.id_cargo}}</th>
+                    <td>{{l.descricao}}</td>
+                    <td>{{l.nivel}}</td>
+                    <td>{{l.status}}</td>
+                    <td>{{l.dt_inclusao}}</td>
+                    <td>{{l.dt_alteracao}}</td>
+                    <td>{{l.usuario}}</td>
+                    <td>
+                        <a href="{% url 'editarCargo' l.id_cargo %}" class="edit" style="color: rgb(11, 24, 212);" title="Editar" data-toggle="tooltip"><i class="fs-5 bi bi-pen-fill"></i></a>
+
+                        <a href="#" class="delete" style="color: rgb(255, 0, 0);" title="Delete" data-bs-toggle="modal" data-bs-target="#myModal{{l.id_cargo}}"><i class="fs-5 bi bi-trash"></i></a>
+                    </td>
+                </tr>
+                <!-- The Modal -->
+                <div class="modal fade" id="myModal{{l.id_cargo}}">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <h5> Tem certeza que deseja apagar o registro {{l.id_cargo}}?</h5>
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <a class="btn btn-success" href="{% url 'deleteCargo' l.id_cargo %}" id="btn_sim" role="button">Sim</a>
+                                <a class="btn btn-danger" href="{% url 'cargo'%}" id="btn_nao" role="button">Não</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor%}
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        {% if paginacao.has_other_pages %}
+        <ul class="pagination">
+            {% if paginacao.has_previous %}
+            <li class="page-item">
+                <a href="?page={{ paginacao.previous_page_number }}" class="page-link">&laquo;</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link">&laquo;</a>
+            </li>
+            {% endif %} {% for pagina in paginacao.paginator.page_range %} {% if paginacao.number == pagina %}
+            <li class="page-item active">
+                <a class="page-link">{{ pagina }}</a>
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a href="?page= {{ pagina }}" class="page-link">{{ pagina }}</a>
+            </li>
+            {% endif %} {% endfor %} {% if paginacao.has_next %}
+            <li class="page-item">
+                <a href="?page= {{ paginacao.next_page_number }}" class="page-link">&raquo;</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link">&raquo;</a>
+            </li>
+            {% endif %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <div class="col-sm-4">
+        <form action="{% url 'cadastro' %}" method="GET">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add </button>
+        </form>
+    </div>
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-{{message.tags}}" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %} {% endif %}
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#mymodal').on('show.bs.modal', function(e) { // executs when the modal opens
+            var url = $(e.relatedTarget).data("id"); // gets data-id from the clicked button
+            alert(url);
+            $("#btn_sim").attr("href", url)
+        }).on('hide.bs.modal', function(e) { // when modal closes
+            $("#confirmNo").off(); // canceles the click event in button "no"
+        });
+    });
+</script>
+
+{% endblock %}
