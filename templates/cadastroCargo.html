@@ -5,6 +5,18 @@
             <h1>Cadastrar Cargo</h1>
         </div>
     </div>
+    {% if messages %} {% for message in messages %}
+    <div class="row">
+
+        <div class="col-md-10">
+            <div class="alert alert-{{message.tags}}  alert-dismissible fade show" role="alert" id="alertID">
+                <strong>{{message.tags}} </strong> {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+
+    </div>
+    {% endfor %} {% endif %}
     <div class="row">
         <div class="col-lg-6">
             <form action="{% url 'cadastro' %}" method="POST">
@@ -27,15 +39,28 @@
                     <label class="form-check-label" for="exampleCheck1">Ativo</label>
                 </div>
 
-                <button type="submit" class="btn btn-success add-new"><i class="fa fa-save"></i> Salvar </button>
+                <button type="submit" class="btn btn-success add-new" id="myWish"><i class="fa fa-save"></i> Salvar </button>
+                <button type="button" class="btn btn-info add-new" onclick="location.href='http://127.0.0.1:8000/cargo'"><i class="bi bi-back"></i> Voltar </button>
+
             </form>
+
         </div>
+
     </div>
-    {% if messages %} {% for message in messages %}
-    <div class="alert alert-{{message.tags}}" role="alert">
-        {{ message }}
-    </div>
-    {% endfor %} {% endif %}
+
 </div>
 
+<!-- Autodismiss alert -->
+<script type="text/javascript">
+    var alertList = document.querySelectorAll('.alert')
+    alertList.forEach(function(alert) {
+        new bootstrap.Alert(alert)
+    })
+
+    var alertQs = document.querySelector('#alertID')
+    var bsAlert = bootstrap.Alert.getInstance(alertQs)
+    window.setTimeout(() => {
+        bsAlert.close();
+    }, 2000);
+</script>
 {% endblock %}

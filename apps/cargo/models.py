@@ -9,6 +9,7 @@ from django.db import models
 
 
 class CargoTb(models.Model):
+    objects = None
     id_cargo = models.BigAutoField(primary_key=True)
     descricao = models.CharField(max_length=50)
     nivel = models.CharField(max_length=50)

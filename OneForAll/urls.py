@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from apps.login.views import * 
 from apps.cargo.views import *
+from apps.cargo import views
 from apps.home.views import *
 from django.conf.urls.static import static
 from django.conf import settings
@@ -28,6 +29,7 @@ urlpatterns = [
     path('cargo/cadastro/', cadastro , name = 'cadastro'),
     path('cargo/delete/<int:id_cargo>', deleteCargo, name = 'deleteCargo'),
     path('cargo/editar/<int:id_cargo>', editarCargo, name = 'editarCargo'),
+
     path('admin/', admin.site.urls),
     #path('home/', home , name = 'home'),
     path('', include('apps.login.urls')),

@@ -94,27 +94,30 @@
     <div class="col-sm-4">
         <form action="{% url 'cadastro' %}" method="GET">
             {% csrf_token %}
-            <button type="submit" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add </button>
+            <button type="submit" id="myWish" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add </button>
         </form>
     </div>
     {% if messages %} {% for message in messages %}
-    <div class="alert alert-{{message.tags}}" role="alert">
-        {{ message }}
+    <div class="col-md-10">
+        <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     </div>
     {% endfor %} {% endif %}
-
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('#mymodal').on('show.bs.modal', function(e) { // executs when the modal opens
-            var url = $(e.relatedTarget).data("id"); // gets data-id from the clicked button
-            alert(url);
-            $("#btn_sim").attr("href", url)
-        }).on('hide.bs.modal', function(e) { // when modal closes
-            $("#confirmNo").off(); // canceles the click event in button "no"
-        });
-    });
+    $('.alert').click(function() {
+
+        $('#alert').removeClass('d-none');
+
+        setTimeout(() => {
+            $('.alert').alert('close');
+        }, 2000);
+
+    })
 </script>
+
 
 {% endblock %}
